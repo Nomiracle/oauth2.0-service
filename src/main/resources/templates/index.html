@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="redirect">重定向地址：</label>
+                <input type="text" id="redirect" class="form-control">
+            </div>
+            <div class="col-sm-4">
+                <label for="authTypes">认证来源：</label>
+                <select id = "authTypes" class="form-control"></select>
+            </div>
+
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <button id="btn-generate-link" class="btn btn-primary" onclick="generateLink()">生成链接：</button><br>
+            </div>
+        </div>
+
+        <a id="generatedLink">xxx</a>
+    </div>
+
+    <hr>
+
+        <form>
+            <div class="form-group">
+                <div class="container">
+                    <h1>用户信息：</h1>
+                    <!--/*@thymesVar id="userInfo" type="java.lang.String"*/-->
+                    <p id="userinfo">xxx</p>
+                </div>
+            </div>
+
+        </form>
+
+
+
+</body>
+<script>
+
+    function generateLink(){
+        let id = new Date().getMilliseconds();
+        $.ajax({
+            url: "/auth/AuthUrl",
+            async: false,
+            type: "GET",
+            contentType: "application/json",
+            // dataType: 'text',
+            data: {
+                redirectUrl: $("#redirect").val(),
+                source: opAuthTypes.val(),
+                id: id,
+            },
+            success: async function (data) {
+                console.log(JSON.stringify(data));
+                let link = $("#generatedLink");
+                link.html(JSON.stringify(data));
+                link.attr("href", data)
+
+                let state = await getValue(data);
+                localStorage.setItem('state', state);
+                localStorage.setItem('id', id);
+                console.log(state);
+            },
+
+        });
+    }
+
+    async function getValue(url)
+    {
+        let key = 'state';
+        let query_string = url.split('?');
+        let string_values = query_string[1].split('&');
+        let req_value = "-1";
+        for(let i=0;  i < string_values.length; i++)
+        {
+            if( string_values[i].match(key)){
+                req_value = string_values[i].split('=');
+                break;
+            }
+        }
+        return req_value[1];
+    }
+
+
+    $.ajax({
+        url: "/auth/AuthInfos",
+        async: false,
+        type: "GET",
+        contentType: "application/json",
+        // dataType: 'json',
+        data: {
+            state : localStorage.getItem('state'),
+            id : localStorage.getItem('id')
+        },
+        success: function (data) {
+            console.log(data);
+            $("#userinfo").html(data);
+        },
+
+    });
+    let opAuthTypes = $("#authTypes");
+    $.ajax({
+        url: "/auth/getAuthTypes",
+        async: false,
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            let authTypes = Array.from(data);
+
+            authTypes.forEach((value, index) => {
+                let o = new Option(value, value);
+                $(o).html(value);
+                opAuthTypes.append(o);
+            });
+
+        },
+
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,72 @@
+server:
+  port: @server.port@
+
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+  redis:
+    host: localhost
+    password:
+    port: 6379
+  application:
+    name: @artifactId@
+  #  datasource:
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    druid:
+  #      initial-size: 2
+  #      max-active: 5
+  #      max-wait: 60000
+  #      min-evictable-idle-time-millis: 300000
+  #      min-idle: 2
+  #      test-on-borrow: false
+  #      test-on-return: false
+  #      test-while-idle: true
+  #      time-between-eviction-runs-millis: 60000
+  #      validation-query: SELECT 1 FROM DUAL
+  #    type: com.alibaba.druid.pool.DruidDataSource
+  #    url: jdbc:mysql://localhost:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+  #    username: root
+  #    password: 123456
+  thymeleaf:
+    cache: false
+    check-template-location: false
+
+#mybatis:
+#  mapper-locations: classpath*:mybatis/**/*Mapper.xml
+
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.esandinfo.auth.client.AuthAliyunClient: info
+    com:
+      esand:
+        faceiddemo:
+          client: info
+      netflix: error
+    io:
+      lettuce: warn
+      netty: warn
+    org:
+      apache: warn
+      mybatis: warn
+      springframework: warn
+      thymeleaf: warn
+
+
+oauth2:
+  aliyun:
+    client_id: "4228409093579939681"
+    client_secret: "5RWMc7UAdWtqrcFIBS9AnjpP2LInXODBcl4F3HSp5s2ZR50vYX39h6YfCDrUxiYr"
+    redirect_uri: @callback.local@
+  dingding:
+    # 在钉钉中为appId
+    client_id: "dingoaucxn4gxtlz9ixiub"
+    client_secret: "BJkG6F1oMMa45cAQPqHl3rHjteaRTC1NIcPCoYPeE8IRbC9Gd8mo86EEvLdKCMwk"
+    redirect_uri: @callback.local@
+  alipay:
+    client_id: "2021001169617195"
+    client_secret: "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC5DXjBGOkr0osgWEBwTu8Ywv6PKTQsv+8Baq9FjKBbTGxHkx+OsOnTVstai+Y24vTLT+IrqJW0gruLlSC6/U2NOZgeQEjJ1wMC3MZ5aA3oSHUW/5NETPYyduqMRjFLTcgkAMZKKBqkrBy48yY9EcKgLL1OGPyPjUD00kwr9t52yC+psrL5nRFTGqr1c0W5msSnigAHYYxlAo2pJhZ3pjAxS3IUM+4S7n3tkirSU7WdtCDT6Nncbg7PbkZqeQsvWx7NWQkDqSyMOCKHa5T0Ip+Wta3ySJatQAxgkRebiL8AoDOkaMcExZ7fX8Q/ehsxSib41HFhJY9uI7dDQmb9qOQhAgMBAAECggEAK3hJrHqQk5XCztdMU9WG/vcXW0PfmL+BgoCwKZNOPAQoz2t1F0zhsJ6L6HpCmxQXUwcx5vWULTIkojZm2OYV6J3l6P1K2/chIvP/v5c85RrYPo3M51d44gPjNw5qF/lukV6JNfRTxekUWjHsAp6AbKX11jmyYnpZDumzsQQt4BLhFxMycjrCIK3ruq34F4NUbxOLw7/R2lrVqP9WEucgK6UcG6+en20ODoejZMmoQjTtRrUgt356QjqR+jQLP0HRGqrwfFxQQPzRfE+A+9nENr9bJzcdETj9DuVLmOQ3KGmkL/roMvjccv16IjzLI4rN+wflBruYxuzqd9cQxZJzAQKBgQD8T9tBnzsxDyxbMaOJWlOfa8BtSJoSd7uEqERiZQeZCnOkZYfUQUWoRLlCXVHz6uPb+CL1WvJhkqglO4+uF1vT3FnwUM7/YSe7Bi61B5MU8QchpOr8Rpl5AnTZttwhfNSI3GteSF2P6dNttEzZsjFt0bWS/wwVuT/oAXPYFQF0kQKBgQC7we7Ur68+aQMkAS06At1jJwBzaWW46ex1PjEnjjwHzILEmzzdp8KmrG10Q8SpZ/bfepq3nUh/WMvYs8Itw2OTKzJLPsDj9p2f6FHa9nnBvxTETGWQSPvo7LI5ohiEwsFlraX418sGoXDqR0hfAch2zoZINwVHlCtoFF5BAk7+kQKBgQCGpKLPsQZoVr2H6MRpfs9TKrAkYXL+2fAyiYz8qQdV7xLpLtk+NprSgeIO/TfHn5h7AT6+igsAcL/UJqW09HgnZdaE/MqJ07HdBx6TsngV282/cX+IorAxuFLc/80W/cN5SY7uYFW1f8U5LNc58PKZtShdSkeLrDDjQSstq3/8UQKBgQCVwG0r59//CCTAH8whu8012xKp+oNug+zb6jmsUe6hTcVy6FoYdEh1RYubMr31W/10a0ZhcqozH/CeK2mRtIiEBez8RNX2PGml89btrK6aEDyRAFn1RbDeK4NPInEp2mgEIAcDvaGp7TOxOB+J31MzJy/FA1VLrOsd/Tjb4up8cQKBgQDrjxXOpXANEmqNWtrAJQaMmq0OcJLalXMhvNnNSdsVFsy+EpMzlRsEaF9eqXjy7Dc/OOqlKtj7MgsDHA5tdyxYxmVEcCV0niNe863m3c/Rv9dtHdApNiZNdukGbOFWmjuplfLYhf8mYvKysA32mlRCUfWk9HaaCpdzHd4oIPfqiQ=="
+    #支付宝不支持localhost回调
+    redirect_uri: @callback.host@

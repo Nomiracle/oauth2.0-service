@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "name": "oauth2.redirect_uri",
+      "type": "java.lang.String",
+      "description": "登陆服务提供商回调auth 服务链接."
+    },
+    {
+      "name": "oauth2.aliyun.client_id",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.aliyun.client_id."
+    },
+    {
+      "name": "oauth2.aliyun.client_secret",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.aliyun.client_secret."
+    },
+    {
+      "name": "oauth2.dingding.client_id",
+      "type": "java.lang.String",
+      "description": "oauth2.dingding.client_id for dingding open console appid."
+    },
+    {
+      "name": "oauth2.dingding.client_secret",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.dingding.client_secret."
+    },
+    {
+      "name": "oauth2.alipay.redirect_uri",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.alipay.redirect_uri."
+    }
+  ] }

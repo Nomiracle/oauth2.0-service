@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="error" strict="true" name="app_on_promise">
+               
+  <Properties>
+    <!-- 应用名称 -->
+    <Property name="appName"><![CDATA[auth]]></Property>
+    <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | %thread | %c | %X{logId} | %X{serviceName} | %msg%n</Property>
+
+
+
+    <!-- 日志输出路径 -->
+    <!-- /var/log/tomcat/${APP} -->
+    <Property name="APP_LOG_HOME">${sys:user.home}/log/${appName}</Property>
+  </Properties>
+ 
+  <Appenders>
+    <Appender type="Console" name="STDOUT">
+      <Layout type="PatternLayout" pattern="${pattern}"/>
+    </Appender>
+
+    <RollingRandomAccessFile name="file-debug"
+                             fileName="${APP_LOG_HOME}/${appName}-debug.log"
+                             filePattern="${APP_LOG_HOME}/$${date:yyyy-MM}/${appName}-debug-%d{yyyyMMdd}_%i.log.gz">
+      <PatternLayout
+              pattern="${pattern}" />
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+        <SizeBasedTriggeringPolicy size="50 MB" />
+      </Policies>
+      <DefaultRolloverStrategy fileIndex="max" max="1000">
+        <Delete basePath="${APP_LOG_HOME}/" maxDepth="2">
+          <IfFileName glob="*/*.log.gz" />
+          <IfLastModified age="30d" />
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingRandomAccessFile>
+  </Appenders>
+ 
+  <Loggers>
+    
+	
+    <Root level="info">
+      <AppenderRef ref="STDOUT"/>
+      <AppenderRef ref="file-debug" />
+    </Root>
+    
+  </Loggers>
+ 
+</Configuration>
