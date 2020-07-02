@@ -32,4 +32,10 @@ public class ClientConfig {
     public ClientConfig aplipay() {
         return new ClientConfig();
     }
+
+    @Bean(ConfigConstants.AUTH_CLIENT_WEIBO+ ConfigConstants.AUTH_CONFIG_SUFFIX)
+    @ConfigurationProperties("oauth2.weibo")
+    public ClientConfig weibo() {
+        return new ClientConfig();
+    }
 }

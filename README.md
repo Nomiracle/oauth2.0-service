@@ -14,6 +14,7 @@ step 2: run application and go to http://localhost:18106/
 |aliyun| https://help.aliyun.com/document_detail/93696.html
 |alipay| https://opendocs.alipay.com/open/284/web
 |dingding| https://ding-doc.dingtalk.com/doc#/serverapi2/etaarr
+|weibo| https://open.weibo.com/wiki/Connect/login
 
 # 添加第三方认证源步骤：
 1.在application中添加client_id 与 client_secret设置

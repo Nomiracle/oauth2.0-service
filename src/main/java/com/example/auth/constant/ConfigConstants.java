@@ -16,6 +16,7 @@ public class ConfigConstants {
     public static final String AUTH_CLIENT_ALIYUN = "aliyun";
     public static final String AUTH_CLIENT_Dingding = "dingding";
     public static final String AUTH_CLIENT_ALIPAY = "aplipay";
+    public static final String AUTH_CLIENT_WEIBO = "weibo";
 
 
 

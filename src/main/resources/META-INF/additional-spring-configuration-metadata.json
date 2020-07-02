@@ -29,5 +29,20 @@
       "name": "oauth2.alipay.redirect_uri",
       "type": "java.lang.String",
       "description": "Description for oauth2.alipay.redirect_uri."
+    },
+    {
+      "name": "oauth2.weibo.client_id",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.weibo.client_id."
+    },
+    {
+      "name": "oauth2.weibo.client_secret",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.weibo.client_secret."
+    },
+    {
+      "name": "oauth2.weibo.redirect_uri",
+      "type": "java.lang.String",
+      "description": "Description for oauth2.weibo.redirect_uri."
     }
   ] }
